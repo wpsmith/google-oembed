@@ -8,7 +8,7 @@
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Adds Google Drive and Maps to the oEmbed functionality.
+Adds Google Drive and Maps to the oEmbed functionality in WordPress.
 
 ## Description ##
 

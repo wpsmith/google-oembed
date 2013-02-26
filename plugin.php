@@ -17,13 +17,33 @@
  */
 
 add_action('plugins_loaded','wpgo_add_google_maps_docs');
+/**
+ * Registers The Google Maps & The Google Drive oEmbed handlers.
+ * Google Maps & Google Drive does not support oEmbed.
+ *
+ * @see WP_Embed::register_handler()
+ * @see wp_embed_register_handler()
+ *
+ */
 function wpgo_add_google_maps_docs() {
 	wp_embed_register_handler( 'googlemaps', '#https?://maps.google.com/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
 	wp_embed_register_handler( 'googledocs', '#https?://docs.google.com/(document|spreadsheet|presentation)/.*#i', 'wpgo_embed_handler_googledrive' );
 }
 
+/**
+ * The Google Maps embed handler callback. Google Maps does not support oEmbed.
+ *
+ * @see WP_Embed::register_handler()
+ * @see WP_Embed::shortcode()
+ *
+ * @param array $matches The regex matches from the provided regex when calling {@link wp_embed_register_handler()}.
+ * @param array $attr Embed attributes.
+ * @param string $url The original URL that was matched by the regex.
+ * @param array $rawattr The original unmodified attributes.
+ * @return string The embed HTML.
+ */
 function wpgo_embed_handler_googlemaps( $matches, $attr, $url, $rawattr ) {
-	if ( !empty($rawattr['width']) && !empty($rawattr['height']) ) {
+	if ( ! empty( $rawattr['width'] ) && ! empty( $rawattr['height'] ) ) {
 		$width  = (int) $rawattr['width'];
 		$height = (int) $rawattr['height'];
 	} else {
@@ -32,6 +52,19 @@ function wpgo_embed_handler_googlemaps( $matches, $attr, $url, $rawattr ) {
 	return apply_filters( 'embed_googlemaps', "<iframe width='{$width}' height='{$height}' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='{$url}&output=embed'></iframe>" );
 }
 
+/**
+ * The Google Drive embed handler callback. Google Drive does not support oEmbed.
+ * Handles documents, spreadsheets, and presentations from Google Drive.
+ *
+ * @see WP_Embed::register_handler()
+ * @see WP_Embed::shortcode()
+ *
+ * @param array $matches The regex matches from the provided regex when calling {@link wp_embed_register_handler()}.
+ * @param array $attr Embed attributes.
+ * @param string $url The original URL that was matched by the regex.
+ * @param array $rawattr The original unmodified attributes.
+ * @return string The embed HTML.
+ */
 function wpgo_embed_handler_googledrive( $matches, $attr, $url, $rawattr ) {
 	if ( !empty($rawattr['width']) && !empty($rawattr['height']) ) {
 		$width  = (int) $rawattr['width'];

@@ -33,4 +33,4 @@ Coming soon...
 
 ## Arbitrary section ##
 
-This plugin is created by Otto which may eventually get rolled into WordPress core thus rendering the plugin void. Follow the [WordPress ticket](http://core.trac.wordpress.org/ticket/23622 "Google oEmbed in WordPress core).
+This plugin is created by Otto which may eventually get rolled into WordPress core thus rendering the plugin void. Follow the [WordPress ticket](http://core.trac.wordpress.org/ticket/23622 "Google oEmbed in WordPress core").
